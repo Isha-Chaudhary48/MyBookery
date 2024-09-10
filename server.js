@@ -18,6 +18,8 @@ const __dirname = dirname(__filename);
 //to hook index.js with server
 
 import {router as indexRouter} from './routes/index.js';
+import {router as authorRouter} from './routes/authors.js';
+
 
 
 
@@ -31,8 +33,7 @@ app.use(express.static('public'));//stylesheet , images
 import mongoose from 'mongoose';
 console.log(process.env.DATABASE_URL)
 mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+   
 })
 
 const db = mongoose.connection;
@@ -42,7 +43,10 @@ db.on('error',(error) => {
      console.error('mongoDB connection error :',error)})
 db.once('open', () => {
     console.log('connected to mongoose successfully')})
+
+
 app.use('/', indexRouter)
+app.use('/authors', authorRouter)
 
 app.listen(process.env.PORT || 3000);
 
