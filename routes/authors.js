@@ -1,6 +1,7 @@
 import express from 'express'
 const router = express.Router()
 
+
 //all authors route
 
 router.get('/', (req, res)=>{
@@ -11,7 +12,7 @@ router.get('/', (req, res)=>{
 //new author route
 
 router.get('/new',(req, res)=>{
-    res.render('authors/new',{})
+    res.render('authors/new',{ })
 });
 
 //create author route
